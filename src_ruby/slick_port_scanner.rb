@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
-require 'socket'  
+require File.expand_path (File.join File.dirname(__FILE__), "scanr.rb")
+require File.expand_path (File.join File.dirname(__FILE__), "inPut.rb")
 
 class SlickPortScanner
   def initialize
@@ -8,40 +9,17 @@ class SlickPortScanner
       puts <<no_args
 Wrong Syntax, you missed providing required CSV file
 Syntax:
-        $ ruby slick_port_scanner.rb ../src_java/sample_ports.csv
+        $ ruby h4cker_s_can.rb sample_input/args.csv
 no_args
       exit 1
     end
-    @ports={}
-    File.open(ARGV[0],"r"){ |fyl|
-      fyl.each_line do |lyn|
-        lyn_split = lyn.split(",")
-        @ports[lyn_split[1].strip]=[]
-        @ports[lyn_split[1].strip].push lyn_split[0].strip
-        @ports[lyn_split[1].strip].push lyn_split[2].strip
-      end
-    }
+    @csv_file_path = ARGV[0]
   end
 
-  def try_open_port(machine, port)
-    begin 
-      sok = TCPSocket.new(machine, port)
-      sok.close
-      true
-    rescue
-      false
-    end
-  end
-
-  def scanner
-    @ports.each_key do |port|
-      if try_open_port @ports[port][0], port.to_i
-        puts port + " is OPEN at " + @ports[port][0]
-      else
-        puts port + " was closed at " + @ports[port][0]
-      end
-    end
+  def portscanner
+    host_port_msg = InPut.new(@csv_file_path).get_host_port_msg
+    Scanr.new(host_port_msg).scanner
   end
 end
 
-SlickPortScanner.new.scanner
+SlickPortScanner.new.portscanner
