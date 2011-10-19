@@ -10,11 +10,19 @@ Slick Port Scanner v0.02
 
 it's the simplest port scanner for a very specific scan of desired ports
 
+[[FOR JAVA VERSION]]
 $ cd src_java
 $ javac PortChk.java
 $ java PortChk
    ~ it should present you with a notification to provide CSV file
 $ java PortChk sample_ports.csv
+
+
+[[FOR RUBY VERSION]]
+$ cd src_ruby
+$ ruby slick_port_scanner.rb 
+   ~ it should present you with a notification to provide CSV file
+$ ruby slick_port_scanner.rb ../src_java/sample_ports.csv
 
 ==================================================================================
 yet to be evolved a lot more, keeping the simple specific scan style intact
