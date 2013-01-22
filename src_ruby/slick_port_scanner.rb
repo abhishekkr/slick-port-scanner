@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-require File.expand_path (File.join File.dirname(__FILE__), "scanr.rb")
-require File.expand_path (File.join File.dirname(__FILE__), "inPut.rb")
+require File.expand_path(File.join File.dirname(__FILE__), "scanr.rb")
+require File.expand_path(File.join File.dirname(__FILE__), "inPut.rb")
 
 class SlickPortScanner
   def initialize
