@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+$LOAD_PATH.unshift File.dirname(__FILE__) + '/../lib'
+
+require 'arg0'
+require 'portlick'
+
+if Arg0::Console.switch?(['-h', '--help']) || ARGV.empty?
+  puts <<-DATA
+PortLick
+#{PortLick::VERSION}
+
+...more to come
+  DATA
+end
+
+PortLick.portscanner
